@@ -10,13 +10,7 @@ constructor(){
     
     gameBoxNode.append(this.node)
     
-    
-    //let minutes = 0
-    //let seconds1 = 0
-    //let seconds2 = 0
-    //this.node.innerText = `${minutes}: ${seconds2} ${seconds1}`
-
-    
+    //POSICION    
     this.x = 600; //posicion eje x
     this.y = 30; //posicion eje y
     this.w = 400; //ancho
@@ -31,8 +25,5 @@ constructor(){
         this.node.style.height = `${this.w}px`
     
 }   
-    
-
-
 
 }

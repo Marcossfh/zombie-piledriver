@@ -13,13 +13,9 @@ const reStart = document.querySelector("#reStart")
 const gameBoxNode = document.querySelector("#game-box")
 
 //timer
-
 const timer = document.querySelector("#timer")
 
-
-
-let game //tenemos que declararla fuera del scope de la funcion startGame, si no no va. vacia porque aun no empezamos el juego
-
+let game //declarada fuera del scope de la funcion startGame
 
 //* FUNCIONES GLOBALES DE CAMBIO DE ESTADO E INICIO
 function startGame(){
@@ -35,10 +31,8 @@ function startGame(){
     game.iniciarFrecuenciaObstaculos()
     game.iniciarFrecuenciaZombies()
     game.contadorInicio()
-    //contador.timer()
+    
 }
-
-
 
 
 //* EVENT LISTENERS

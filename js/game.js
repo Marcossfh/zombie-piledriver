@@ -2,40 +2,34 @@ let timer2 = 100
 
 class Game {
 
-    //propiedades
+    //PROPIEDADES
     constructor() {
         
-        //coche
-        this.coche = new Coche() //el juego empieza con un coche,esto genera el coche desde coche.js
-        //----------------------------------------
-        //time
-        this.contador = new Contador()
-        //this.cuentaRegresiva  = new Contador()
-        //this.timeLimit = timeLimit
-        //time remaining
-        //this.timeRemaining = timeRemaining 
-        //----------------------------------------
+        // 1.coche
+        this.coche = new Coche() //generamos un nuevo coche desde coche.js
         
-        //obstaculoss
+        // 2.timer
+        this.contador = new Contador()
+        
+        // 3.obstaculos
             //this.unObstaculo = new Obstaculos()
             //esta seria  soolo uno, necesitamos mas
         this.obstaculosArr = []
-        //zombies
-        //this.unZombie = new Zombies()
-        this.zombiesArr = []
-        //ids de intervalos
-        this.gameIntervalId;
         
+        // 4.zombies
+            //this.unZombie = new Zombies()
+        this.zombiesArr = []
+        
+        // 5.ids de intervalos
+        this.gameIntervalId;       
         this.obstaculosIntervalId;
-
         this.zombiesIntervalId;
-
         this.timerId;
     }
 
-    //metodos
+    //METODOS
 
-            //movimiento  obstaculos
+        // 1.movimiento  obstaculos
 
     obstaculoAparece(){
         
@@ -46,12 +40,13 @@ class Game {
     }
 
     iniciarFrecuenciaObstaculos(){
+        
         this.obstaculosIntervalId = setInterval(() => {
             this.obstaculoAparece()
         },3000)
     }
             
-            //movimiento zombies
+        // 2.movimiento zombies
             
     zombieAparece(){
         let nuevoZombie = new Zombies()
@@ -65,59 +60,41 @@ class Game {
 
     }
 
-//----------------------------------------
-    
-    
-    
-//----------------------------------------
 
-
-            //colisiones
-
+        // 3.colisiones
             
     colisionObstaculosCoche(){
         //necesitamos coche y obstaculos
         this.obstaculosArr.forEach((eachObstaculo) => {
-
             if (
                 this.coche.x < eachObstaculo.x + eachObstaculo.w &&
                 this.coche.x + this.coche.w > eachObstaculo.x &&
                 this.coche.y < eachObstaculo.y + eachObstaculo.h &&
                 this.coche.h + this.coche.y > eachObstaculo.y
-              ) {
-                // ¡colisión detectada!
-                console.log("golpe obstaculo")
+              ) {                              
                 //invocar func gameover
                 this.gameOver()
               }
-
-
         })
     }
 
     colisionZombiesCoche(){
         this.zombiesArr.forEach((eachZombie) => {
-
             if (
                 this.coche.x < eachZombie.x + eachZombie.w &&
                 this.coche.x + this.coche.w > eachZombie.x &&
                 this.coche.y < eachZombie.y + eachZombie.h &&
                 this.coche.h + this.coche.y > eachZombie.y
-              ) {
-                // ¡colisión detectada!
-                console.log("zombie estampao")           
-                timer2 += 0.5
-                
-              }
-            
+              ) {                          
+                timer2 += 0.5               
+              }           
         })
     }
 
-    
-        //accion de gameover
+        // 4.gameover e  intervalos   
 
     gameOver(){
-        //hay que detener  loos intervalos para que no pete el juego aunque haya terminado
+        //detener intervalos 
         clearInterval(this.gameIntervalId)
         clearInterval(this.obstaculosIntervalId)
         clearInterval(this.zombiesIntervalId)
@@ -129,10 +106,7 @@ class Game {
     }
 
 
-    //BONUS
-            //musica
-            //fx sonido
-
+        // 5.gameloop
 
     gameLoop(){
 
@@ -151,10 +125,10 @@ class Game {
         })
         this.colisionZombiesCoche()
         //funcion contador
-
-       
+      
     }
 
+        // 6.timer
 
     contadorInicio(){
         
@@ -162,37 +136,20 @@ class Game {
             timer2 = timer2 -1
             this.contador.node.innerText = timer2
     
-
             if(timer2 === 0){
                 this.gameOver()
-            }
-         /*if(this.seconds1 === 0 && this.seconds2 === 0){
-            this.minutes--
-            this.seconds2 = 5
-            this.seconds1 = 9
-         }else if(this.seconds1 ===0){
-            this.seconds2--
-            this.seconds1 = 9
-         }*/
-    
-         
+            }        
         }, 100)
-        
-        
-        
-            
-        }
+                   
+    }
 
+        // 7.start
 
     start() {
         this.gameIntervalId = setInterval(() => {
-            this.gameLoop()
-            //console.log("juego en marcha")
-            //aqui inicio juego
+            this.gameLoop()        
         }, Math.round(1000/60)) //va a 60fps
 
     }
-    /*reStart(){
-        window.location.reload()
-    } deberia funcionar, opcion 2*/
+    
 }
